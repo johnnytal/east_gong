@@ -165,5 +165,5 @@ function compassError(){
 }
 
 function onError(error) {
-	alert('geolocation Error!');
+	alert('geolocation Error - ' + error);
 }
