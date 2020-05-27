@@ -69,7 +69,7 @@ colorMain.prototype = {
 };
 
 function compassSuccess(heading) {
-    head = Math.round(heading.magneticHeading); // 0 - 359
+	head = 360 - (Math.round(heading.alpha));
 
     compass.angle = head * -1;
     
