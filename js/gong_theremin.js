@@ -8,7 +8,9 @@ var colorMain = function(game){
     
 	POINT = [
 		{name: 'Mecca', lat: 21.42, lang: 39.82},
-		{name: 'Moscow', lat: 55.45, lang: 37.37}
+		{name: 'Bodh Gaya', lat: 24.69, lang: 84.99},
+		{name: 'Jerusalem', lat: 31.77, lang: 35.23},
+		{name: 'Disney World', lat: 28.40, lang: -81.57},
 	];
 	place = 0;
 	
@@ -119,13 +121,9 @@ function onSuccess(position) { // get your current location to match with the si
 	lang = position.coords.longitude;   
 };
 
-function cahngeDestination(){	
-	var elem = document.getElementById("whereTo");
-	
-	if (place == 0) place = 1;
-	else{ place = 0; }
-	
-	elem.value = 'To ' + POINT[place].name;
+function changeDestination(_this){	
+	place = _this.getAttribute('data-index');
+	console.log(place)
 }
 
 function makeGong(){
