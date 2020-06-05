@@ -2,8 +2,8 @@
 document.addEventListener("deviceready", start, false);
 
 function start(){
-    WIDTH = 400; 
-    HEIGHT = 600; 
+    WIDTH = 850; 
+    HEIGHT = 1100; 
 
     game = new Phaser.Game(WIDTH, HEIGHT, Phaser.CANVAS, "container");  
 

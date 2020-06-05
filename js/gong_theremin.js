@@ -8,9 +8,9 @@ var colorMain = function(game){
     
 	POINT = [
 		{name: 'Mecca', lat: 21.42, lang: 39.82},
-		{name: 'Bodh Gaya', lat: 24.69, lang: 84.99},
 		{name: 'Jerusalem', lat: 31.77, lang: 35.23},
-		{name: 'Disney World', lat: 28.40, lang: -81.57},
+		{name: 'Bodh Gaya', lat: 24.69, lang: 84.99},
+		{name: 'Disney World', lat: 28.40, lang: -81.57}
 	];
 	place = 0;
 	
@@ -46,7 +46,16 @@ colorMain.prototype = {
         pointArrow = game.add.image(0, 0, 'point'); // showing where the phone is heading to (middle X)
         pointArrow.x = game.world.centerX - pointArrow.width / 2;
         pointArrow.y = compass.y - compass.height / 2;
-        
+
+		instText = game.add.text(10, 10, 'Find the way to:', {font: '32px', fill: 'lightgrey'});
+		
+		for (x = 0; x < 4; x++){
+			btn = game.add.sprite(10 + 210*x, 60 , 'button' + x);
+			btn.inputEnabled = true;
+			btn.events.onInputDown.add(changeDestination, this);
+			btn.scale.set(.9, 1);
+		}
+
         try{
         	window.plugins.insomnia.keepAwake();
     	} catch(e){}
@@ -55,10 +64,10 @@ colorMain.prototype = {
             StatusBar.hide();
         } catch(e){}
 
-  		debugGeo = game.add.text(10, 5, 'geo', {font: '20px', fill: 'black'});
+  		debugGeo = game.add.text(10, 130, 'geo', {font: '28px', fill: 'lightgrey'});
   		
-  		debugHeading = game.add.text(0, 0, '00', {font: '24px', fill: 'white', stroke:'black', strokeThickness: 2});
-		debugHeading.x = game.world.centerX - debugHeading.width / 2;
+  		debugHeading = game.add.text(0, 0, '00', {font: '36px', fill: 'white', stroke:'black', strokeThickness: 2});
+		debugHeading.x = -7 + game.world.centerX - debugHeading.width / 2;
 		debugHeading.y = game.world.centerY - debugHeading.height / 2;
 		
 		try{
@@ -122,8 +131,8 @@ function onSuccess(position) { // get your current location to match with the si
 };
 
 function changeDestination(_this){	
-	place = _this.getAttribute('data-index');
-	console.log(place)
+	place_n = _this.key;
+	place = place_n.slice(6, 7);
 }
 
 function makeGong(){
@@ -131,7 +140,7 @@ function makeGong(){
 
 	game.stage.backgroundColor = '#ffffff';
 	
-	bell = game.add.image(0, 500, 'bell');
+	bell = game.add.image(675, 150, 'bell');
 	
 	window.plugins.flashlight.switchOn();
 	navigator.vibrate(500);
