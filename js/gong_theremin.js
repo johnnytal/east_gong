@@ -69,11 +69,14 @@ colorMain.prototype = {
   		debugHeading = game.add.text(0, 0, '00', {font: '36px', fill: 'white', stroke:'black', strokeThickness: 2});
 		debugHeading.x = -7 + game.world.centerX - debugHeading.width / 2;
 		debugHeading.y = game.world.centerY - debugHeading.height / 2;
-		
+
+
 		try{
-			window.addEventListener("deviceorientation", compassSuccess, true);
+			window.ondeviceorientationabsolute = function(event) { 
+				compassSuccess(event);
+			};
         } catch(e){ 
-        	navigator.compass.watchHeading(compassSuccess, compassError); 
+        	window.addEventListener("deviceorientation", compassSuccess, true);
         }  
         
         window.addEventListener("compassneedscalibration", function(event) {
@@ -86,7 +89,7 @@ colorMain.prototype = {
 };
 
 function compassSuccess(heading) {
-	head = 360 - (Math.round(heading.alpha));
+	head = 360 - (Math.round(heading.absolute));
 
     compass.angle = head * -1;
     
@@ -151,7 +154,6 @@ function makeGong(){
 	navigator.vibrate(500);
 	
 	setTimeout(function(){
-		window.plugins.flashlight.switchOff();
 		bell.kill();
 	}, 5000);
 }
