@@ -72,11 +72,9 @@ colorMain.prototype = {
 
 
 		try{
-			window.ondeviceorientationabsolute = function(event) { 
-				compassSuccess(event);
-			};
+			window.addEventListener("deviceorientation", compassSuccess, true);
         } catch(e){ 
-        	window.addEventListener("deviceorientation", compassSuccess, true);
+        	
         }  
         
         window.addEventListener("compassneedscalibration", function(event) {
