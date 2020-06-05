@@ -87,7 +87,7 @@ colorMain.prototype = {
 };
 
 function compassSuccess(heading) {
-	head = 360 - (Math.round(heading.absolute));
+	head = 360 - (Math.round(heading.alpha));
 
     compass.angle = head * -1;
     
