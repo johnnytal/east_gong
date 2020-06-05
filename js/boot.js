@@ -18,14 +18,7 @@ var boot = function(game){};
   
 boot.prototype = {
     create: function(){
-    	
-    	game.stage.backgroundColor = '#ffffff';
-
-        if (this.game.device.desktop){
-            this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        } 
-        
-        else {
+        if (!this.game.device.desktop){
             this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
             this.scale.maxWidth = window.innerWidth * window.devicePixelRatio;

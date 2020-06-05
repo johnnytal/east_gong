@@ -75,6 +75,12 @@ colorMain.prototype = {
         } catch(e){ 
         	navigator.compass.watchHeading(compassSuccess, compassError); 
         }  
+        
+        window.addEventListener("compassneedscalibration", function(event) {
+        	alert('Your compass needs calibrating! Wave your device in a figure-eight motion');
+            event.preventDefault();
+     	 }, true);
+     
 		navigator.geolocation.watchPosition(onSuccess, onError);
     }
 };
@@ -142,7 +148,6 @@ function makeGong(){
 	
 	bell = game.add.image(675, 150, 'bell');
 	
-	window.plugins.flashlight.switchOn();
 	navigator.vibrate(500);
 	
 	setTimeout(function(){
